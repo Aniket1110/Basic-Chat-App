@@ -2,8 +2,12 @@ import React from 'react'
 import { Icon } from '@iconify/react';
 import "../App.css"
 import Mysvg from "../wave.svg"
-const Login = () => {
+import {auth} from "./Firebase"
+import "firebase/compat/app"
+import { useNavigate } from 'react-router-dom';
 
+
+const Login = () => {
 
     const backgroundStyle = {
         backgroundImage: `url(${Mysvg})`,
@@ -13,8 +17,10 @@ const Login = () => {
         height: '50vh',
     };
 
+    const history = useNavigate();
+
     return (
-        <div className='vh-100 ed'>
+        <div className='vh-100'>
             <div className="container py-5">
                 <div className="row h-100">
                     <div className="col-7">
@@ -39,7 +45,7 @@ const Login = () => {
                             </div>
                             <a className="btn btn-outline-dark btn-block  w-100 rounded-pill" href='#' role="button">
                                 <strong>
-                                    <Icon icon="flat-color-icons:google" className="m-1" />Continue with Google
+                                    <Icon icon="flat-color-icons:google" className="m-1" />Login with Google
                                 </strong>
                             </a>
                             <div className="divider d-flex align-items-center my-4">
@@ -78,7 +84,7 @@ const Login = () => {
 
                             <div class="d-flex align-items-center justify-content-center py-4">
                                 <strong><p class="mb-0 me-2">Don't have an account?</p></strong>
-                                <button type="button" class="btn btn-outline-danger">Create new</button>
+                                <button type="button" class="btn btn-outline-danger" onClick={() => history('/register')}>Create new</button>
                             </div>
 
                         </form>
