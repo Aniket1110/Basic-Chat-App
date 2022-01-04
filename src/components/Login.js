@@ -21,25 +21,30 @@ const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const [err, seterr] = useState('')
+    const [ok , setok] = useState(true)
     const [done, setdone] = useState(false)
 
     async function submit(e) {
         e.preventDefault()
+        seterr('')
+        setok(true)
+       
         try {
-
             await login(emailRef.current.value, passwordRef.current.value);
             setdone(true)
-            seterr('Logged in successfully!!')
             navigate('/home',{replace:true})
         }
         catch (e) {
-            console.log(e.message)
-            seterr('An Error occured')
+            setok(false)
+            if(e.message == 'Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).') seterr('Wrong Password')
+            else if(e.message == 'Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') seterr('User not found')
+            else seterr('An Error occured')
         }
 
         emailRef.current.value = ''
         passwordRef.current.value = ''
         setdone(false)
+        
     }
 
     return (
@@ -76,7 +81,10 @@ const Login = () => {
                                     <p className="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                                 </strong>
                             </div>
-                            <div className='w-75 mx-auto text-center rounded' style={!done ? { "backgroundColor": "#e87f85" } : { "backgroundColor": "#7fe8a5" }}>{err}</div>
+                            {
+                                !ok ?  <div className='w-100 mx-auto text-center rounded-pill p-2 m-1' style={{"backgroundColor":"#e05e64"}}>{err}</div> : <div></div>
+                            }
+                           
                             <div className="form-outline mb-4">
                                 <strong>
                                     <label className="form-label" for="emailid">Email address</label>
