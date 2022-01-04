@@ -2,10 +2,10 @@ import React from 'react'
 import { Icon } from '@iconify/react';
 import "../App.css"
 import Mysvg from "../wave.svg"
-import {auth} from "./Firebase"
 import "firebase/compat/app"
 import { useNavigate } from 'react-router-dom';
 
+import { auth } from "./Firebase";
 
 const Login = () => {
 
