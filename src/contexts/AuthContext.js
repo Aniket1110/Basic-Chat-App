@@ -11,10 +11,11 @@ export const useAuth = () => {
 const AuthProvider = ({children}) => {
 
     const [user , setUser] = useState()
-
     const register = (email , password) => {
-
         return auth.createUserWithEmailAndPassword(email , password)
+    }
+    const login = (email , password) => {
+        return auth.signInWithEmailAndPassword(email , password)
     }
 
     useEffect(() => {
@@ -29,9 +30,10 @@ const AuthProvider = ({children}) => {
 
     const value = {
         user,
-        register
+        register,
+        login
     }
-    
+
     return (
         <AuthContext.Provider value={value}>
             {children}

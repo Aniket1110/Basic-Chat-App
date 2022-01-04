@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { Icon } from '@iconify/react';
 import "../App.css"
 import Mysvg from "../wave.svg"
 import "firebase/compat/app"
 import { useNavigate } from 'react-router-dom';
-
-import { auth } from "./Firebase";
+import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
 
@@ -17,7 +16,31 @@ const Login = () => {
         height: '50vh',
     };
 
-    const history = useNavigate();
+    const navigate = useNavigate();
+    const { login } = useAuth()
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const [err, seterr] = useState('')
+    const [done, setdone] = useState(false)
+
+    async function submit(e) {
+        e.preventDefault()
+        try {
+
+            await login(emailRef.current.value, passwordRef.current.value);
+            setdone(true)
+            seterr('Logged in successfully!!')
+            navigate('/home',{replace:true})
+        }
+        catch (e) {
+            console.log(e.message)
+            seterr('An Error occured')
+        }
+
+        emailRef.current.value = ''
+        passwordRef.current.value = ''
+        setdone(false)
+    }
 
     return (
         <div className='vh-100'>
@@ -37,7 +60,7 @@ const Login = () => {
                     </div>
                     <div className="col-1"></div>
                     <div className="col-4 shadow-lg p-3 mb-5 bg-white round">
-                        <form>
+                        <form onSubmit={submit}>
                             <div className='p-4 fs-4'>
                                 <strong>
                                     <Icon icon="ant-design:login-outlined" className='mx-2' />Login
@@ -53,17 +76,18 @@ const Login = () => {
                                     <p className="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                                 </strong>
                             </div>
+                            <div className='w-75 mx-auto text-center rounded' style={!done ? { "backgroundColor": "#e87f85" } : { "backgroundColor": "#7fe8a5" }}>{err}</div>
                             <div className="form-outline mb-4">
                                 <strong>
                                     <label className="form-label" for="emailid">Email address</label>
                                 </strong>
-                                <input type="email" id="emailid" className="form-control form-control-lg  rounded-pill" />
+                                <input type="email" id="emailid" className="form-control rounded-pill" ref={emailRef} />
                             </div>
                             <div className="form-outline mb-4 ">
                                 <strong>
                                     <label className="form-label" for="password">Password</label>
                                 </strong>
-                                <input type="password" id="password" className="form-control form-control-lg  rounded-pill" />
+                                <input type="password" id="password" className="form-control rounded-pill" ref={passwordRef} />
                             </div>
                             <div className="d-flex justify-content-around align-items-center mb-4" >
 
@@ -80,11 +104,12 @@ const Login = () => {
                                 </div>
                                 <a href="#" >Forgot password?</a>
                             </div>
-                            <button type="button" class="btn btn-primary btn-block w-100 rounded-pill">Log In</button>
+                            <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill">Log In</button>
 
                             <div class="d-flex align-items-center justify-content-center py-4">
                                 <strong><p class="mb-0 me-2">Don't have an account?</p></strong>
-                                <button type="button" class="btn btn-outline-danger" onClick={() => history('/register')}>Create new</button>
+                                <button type="button" class="btn btn-outline-danger" onClick={() => navigate('/register',{replace:true})}>Create new</button>
+                                
                             </div>
 
                         </form>
