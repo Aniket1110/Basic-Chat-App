@@ -3,6 +3,7 @@ import Register from "./components/Register";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AuthProvider from "./contexts/AuthContext";
 import Home from "./components/Home";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route exact path='/' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/home' element={<Home/>} />
+            <Route path='/forgot-password' element={<ForgotPassword/>}/>
           </Routes>
         </Router>
       </AuthProvider>

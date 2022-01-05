@@ -19,6 +19,9 @@ const AuthProvider = ({children}) => {
     const logout = () => {
         return auth.signOut()
     }
+    const forgotpassword = (email) => {
+        return auth.sendPasswordResetEmail(email)
+    }
 
     useEffect(() => {
         const change = auth.onAuthStateChanged(user => {
@@ -31,7 +34,8 @@ const AuthProvider = ({children}) => {
         user,
         register,
         login,
-        logout
+        logout,
+        forgotpassword
     }
     return (
         <AuthContext.Provider value={value}>
