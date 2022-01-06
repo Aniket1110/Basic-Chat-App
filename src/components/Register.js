@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { useAuth } from '../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 
 const Register = () => {
 
@@ -87,10 +87,10 @@ const Register = () => {
                                 <input type="password" id="confirmpassword" className="form-control rounded-pill" ref={confirmPasswordRef} />
                             </div>
                             <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill my-4" disabled={done}>Register</button>
-                            <div class="d-flex align-items-center justify-content-center">
+                            {/* <div class="d-flex align-items-center justify-content-center">
                                 <strong><p class="mb-0 me-2">Already have an account?</p></strong>
-                                <button type="button" class="btn btn-outline-danger" onClick={() => navigate('/', { replace: true })}>Login Now</button>
-                            </div>
+                                <Link type="button" class="btn btn-outline-danger" to="/">Login Now</Link>
+                            </div> */}
                         </form>
                     </div>
                     <div className="col-4"></div>

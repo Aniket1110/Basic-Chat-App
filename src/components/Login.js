@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import "../App.css"
 import Mysvg from "../wave.svg"
 import "firebase/compat/app"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
@@ -110,13 +110,13 @@ const Login = () => {
                                         <label className="form-check-label" for="checkbox"> Remember me </label>
                                     </strong>
                                 </div>
-                                <a href="#" >Forgot password?</a>
+                                <Link to="/forgot-password">Forgot password?</Link>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill">Log In</button>
 
                             <div class="d-flex align-items-center justify-content-center py-4">
                                 <strong><p class="mb-0 me-2">Don't have an account?</p></strong>
-                                <button type="button" class="btn btn-outline-danger" onClick={() => navigate('/register',{replace:true})}>Create new</button>
+                                <Link type="button" class="btn btn-outline-danger" to="/register">Create new</Link>
                                 
                             </div>
 

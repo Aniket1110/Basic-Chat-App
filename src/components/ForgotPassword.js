@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import { Icon } from '@iconify/react'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
