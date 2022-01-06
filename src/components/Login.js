@@ -82,7 +82,7 @@ const Login = () => {
                                 </strong>
                             </div>
                             {
-                                !ok ?  <div className='w-100 mx-auto text-center rounded-pill p-2 m-1' style={{"backgroundColor":"#e05e64"}}>{err}</div> : <div></div>
+                                !ok ?  <div className='w-100 mx-auto text-center rounded-pill p-2 m-1' style={{"backgroundColor":"#e88296"}}>{err}</div> : <div></div>
                             }
                            
                             <div className="form-outline mb-4">

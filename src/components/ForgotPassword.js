@@ -1,36 +1,40 @@
 import React, { useRef, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { Icon } from '@iconify/react'
 
 const Register = () => {
 
     const emailRef = useRef()
 
     const { forgotpassword } = useAuth()
-    const [err, seterr] = useState('')
-    const [ok , setok] = useState(true)
+    const [msg, setmsg] = useState('')
+    const [err, seterr] = useState(false)
     const [done, setdone] = useState(false)
-    const navigate = useNavigate()
-
+    const [one , setone] = useState(false)
+    
     async function submit(e) {
         e.preventDefault()
-        seterr('')
-        setok(true)
-      
+        setmsg('')
+        seterr(false)
+        setdone(false)
+
         try {
             await forgotpassword(emailRef.current.value);
-            seterr('Check your inbox for further instructions')
+            setmsg('check your inbox for further instructions')
             setdone(true)
+            setone(true)
+           
         }
         catch (e) {
-           console.log(e.message)
+        //    console.log(e.message)
            if(e.message == 'Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
-               seterr('User not found')
+               setmsg('user not found')
            }
-           else seterr('An Error occured')
-           setok(false)
+           else setmsg('An Error occured')
+           seterr(true)
         }
-        setdone(false)
+
     }
 
     return (
@@ -40,22 +44,18 @@ const Register = () => {
                     <div className="col-4"></div>
                     <div className="col-4 shadow-lg p-3 mb-5 bg-white round">
                         <form onSubmit={submit}>
-                            <div className='p-4 fs-3 text-center'>
-                                <strong>Forgot Password</strong>
+                            <div className='fs-3 text-center'>
+                                <strong>Pasword Reset</strong>
                             </div>
-                            
-                            {
-                                !ok ? <div className='w-100 mx-auto text-center rounded-pill p-2 m-1' style={{ "backgroundColor": "#e05e64" }}>{err}</div> : <div></div>
-                            }
-
-                            <div className="form-outline mb-4">
+                            <div className='w-100 rounded mt-3' style={ err ? { "backgroundColor": "#e88296", "padding":"10px" } : done ? { "backgroundColor": "#9ff4b1","padding":"10px" } : { "backgroundColor": "white" }}>{msg}</div> : <div></div>
+                            <div className="form-outline ">
                                 <strong>
-                                    <label className="form-label" for="emailid">Enter your registered Email address</label>
+                                    <label className="form-label" for="emailid">Enter Email </label>
                                 </strong>
                                 <input type="email" id="emailid" className="form-control   rounded-pill" ref={emailRef} />
                             </div>
-                           
-                            <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill my-4" disabled={done}>Send Mail</button>
+                            <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill my-4" disabled={one}>Send Mail</button>
+                            <Link to="/" className='fs-5'><Icon icon="akar-icons:arrow-back" /> Back to Login</Link>
                         </form>
                     </div>
                     <div className="col-4"></div>
