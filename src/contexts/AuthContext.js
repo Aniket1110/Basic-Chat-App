@@ -23,6 +23,11 @@ const AuthProvider = ({children}) => {
         return auth.sendPasswordResetEmail(email)
     }
 
+    const resetpassword = () => {
+        
+        // To be done
+    }
+
     useEffect(() => {
         const change = auth.onAuthStateChanged(user => {
             setUser(user)
