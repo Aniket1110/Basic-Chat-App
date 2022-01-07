@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import ForgotPassword from "./components/ForgotPassword";
 import Profile from "./components/Profile";
 import PasswordReset from "./components/PasswordReset";
+import UpdateProfile from "./components/UpdateProfile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path='/forgot-password' element={<ForgotPassword/>}/>
             <Route path='/home/profile' element={<Profile />} />
             <Route path='/home/password-reset' element={<PasswordReset />}/>
+            <Route path='/home/profile/update-profile' element={<UpdateProfile />}/>
           </Routes>
         </Router>
       </AuthProvider>

@@ -1,8 +1,14 @@
 import React from 'react'
 import { Icon } from '@iconify/react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
 const Profile = () => {
+
+    const { user } = useAuth()
+
+    console.log(user)
+
     return (
         <div className='h-100 w-100'>
             <div className="row p-3 bg-dark text-light">
@@ -19,22 +25,22 @@ const Profile = () => {
                 <div className='col-4 shadow-lg p-3 mb-5 bg-white round'>
                     <div className='p-4 fs-4 text-center'>
                         <strong>
-                          Profile
+                            Profile
                         </strong>
                     </div>
                     <div className='p-3 fs-4'>
-                        Name - Aniket Majhi
+                        Name - {user.displayName}
                     </div>
                     <div className='p-3 fs-4'>
-                        About - I am fine
+                        Email - {user.email}
                     </div>
-                    <div className='p-3 fs-4'>
-                        Email - aniket@gmail.com
-                    </div>
-                    <button className='btn btn-primary btn-block w-100 rounded-pill p-2 m-1'>Update Profile</button>
+                    <Link to='/home/profile/update-profile'>
+                        <button className='btn btn-primary btn-block w-100 rounded-pill p-2 m-1'>Update Profile</button>
+                    </Link>
+
                 </div>
                 <div className="col-4"></div>
-                
+
             </div>
         </div>
 

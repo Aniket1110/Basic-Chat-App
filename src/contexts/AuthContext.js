@@ -10,6 +10,8 @@ export const useAuth = () => {
 const AuthProvider = ({children}) => {
 
     const [user , setUser] = useState()
+    const [hasuser, sethasuser] = useState(false)
+
     const register = (email , password) => {
         return auth.createUserWithEmailAndPassword(email , password)
     }
@@ -23,14 +25,25 @@ const AuthProvider = ({children}) => {
         return auth.sendPasswordResetEmail(email)
     }
 
-    const resetpassword = () => {
+    // const resetpassword = () => {
         
-        // To be done
-    }
+    //     // To be done
+    // }
+
+    // const updatename = (name) => {
+    //     return auth.currentUser.updateProfile({
+    //         displayName : name
+    //     })
+    // }
+
+    // const updatephonenumber = (phone) => {
+    //     return auth.currentUser.updatePhoneNumber()
+    // }
 
     useEffect(() => {
         const change = auth.onAuthStateChanged(user => {
             setUser(user)
+            sethasuser(true)
         })
         return change;
     },[])
@@ -44,7 +57,7 @@ const AuthProvider = ({children}) => {
     }
     return (
         <AuthContext.Provider value={value}>
-            {children}
+            {hasuser && children}
         </AuthContext.Provider>
     )
 }
