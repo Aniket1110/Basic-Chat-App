@@ -63,12 +63,10 @@ const Home = () => {
                 <div className="col-3">Now Chattt</div>
                 <div className="col-6"></div>
                 <div className="col-3 text-end">
-
                     <Dropdown>
                         <Dropdown.Toggle variant="dark" id="dropdown-basic">
                             <Icon icon="healthicons:ui-user-profile" className='fs-3' />
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="home/password-reset">Change Password</Dropdown.Item>
                             <Dropdown.Item >
