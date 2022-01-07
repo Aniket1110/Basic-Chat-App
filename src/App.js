@@ -8,7 +8,7 @@ import PasswordReset from "./components/PasswordReset";
 
 function App() {
   return (
-
+    
     <div className="App">
       <AuthProvider>
         <Router>
