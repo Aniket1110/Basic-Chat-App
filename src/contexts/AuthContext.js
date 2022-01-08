@@ -22,17 +22,7 @@ const AuthProvider = ({ children }) => {
         return auth.signInWithEmailAndPassword(email, password)
     }
     const loginwithgoogle = async () => {
-        return await auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-            .then((result) => {
-                const details = firebase.auth.getAdditionalUserInfo(result)
-                console.log('I am Aniket Majhi')
-                console.log(result);
-                console.log(details)
-            })
-            .catch((error) => {
-                console.log('Failed login')
-                console.log(error);
-            });
+        return auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
     }
     const logout = () => {
         return auth.signOut()

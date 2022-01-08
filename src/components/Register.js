@@ -8,7 +8,7 @@ const Register = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const confirmPasswordRef = useRef()
-    const { register } = useAuth()
+    const { register,loginwithgoogle } = useAuth()
     const [err, seterr] = useState('')
     const [ok , setok] = useState(true)
     const [done, setdone] = useState(false)
@@ -53,7 +53,7 @@ const Register = () => {
                             <div className='p-4 fs-3 text-center'>
                                 <strong>Register</strong>
                             </div>
-                            <a className="btn btn-outline-dark btn-block  w-100 rounded-pill" href='#' role="button">
+                            <a className="btn btn-outline-dark btn-block  w-100 rounded-pill" role="button" onClick={loginwithgoogle}>
                                 <strong>
                                     <Icon icon="flat-color-icons:google" className="m-1" />Sign Up with Google
                                 </strong>

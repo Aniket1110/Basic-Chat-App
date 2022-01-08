@@ -5,7 +5,6 @@ import Mysvg from "../wave.svg"
 import "firebase/compat/app"
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import firebase from 'firebase/compat/app';
 
 const Login = () => {
 
@@ -47,18 +46,6 @@ const Login = () => {
         setdone(false)
 
     }
-
-    // const loginGoogle = () => {
-
-    //     loginwithgoogle().then((result) => {
-    //         const details = firebase.auth.getAdditionalUserInfo(result)
-    //         console.log(result);
-    //         console.log(details)
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    // }
 
     return (
         <div className='vh-100'>
