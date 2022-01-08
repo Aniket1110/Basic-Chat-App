@@ -55,7 +55,7 @@ const Register = () => {
                                 <input type="email" id="emailid" className="form-control   rounded-pill" ref={emailRef} />
                             </div>
                             <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill my-4" disabled={one}>Send Mail</button>
-                            <Link to="/" className='fs-5'><Icon icon="akar-icons:arrow-back" /> Back to Login</Link>
+                            <Link to="/login" className='fs-5'><Icon icon="akar-icons:arrow-back" /> Back to Login</Link>
                         </form>
                     </div>
                     <div className="col-4"></div>

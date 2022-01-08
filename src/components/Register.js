@@ -27,7 +27,7 @@ const Register = () => {
 
             await register(emailRef.current.value, passwordRef.current.value);
             setdone(true)
-            navigate('/home', { replace: true })
+            navigate('/', { replace: true })
         }
         catch (e) {
             setok(false)

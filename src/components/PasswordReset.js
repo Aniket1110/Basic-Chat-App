@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useRef } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { Link } from 'react-router-dom'
-import { Icon } from '@iconify/react'
 
 const PasswordReset = () => {
 
@@ -67,7 +65,6 @@ const PasswordReset = () => {
                         <input type="password" id="confirmnewpassword" className="form-control rounded-pill" ref={confirmpasswordRef} />
                     </div>
                     <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill" disabled={one}>Submit</button>
-                    <Link to="/" className='fs-5'><Icon icon="akar-icons:arrow-back" /> Back to Login</Link>
                 </form>
             </div>
             <div className="col-4"></div>

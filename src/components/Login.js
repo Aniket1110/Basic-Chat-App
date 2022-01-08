@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import "../App.css"
 import Mysvg from "../wave.svg"
 import "firebase/compat/app"
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
@@ -17,34 +17,34 @@ const Login = () => {
     };
 
     const navigate = useNavigate();
-    const { login} = useAuth()
+    const { login } = useAuth()
     const emailRef = useRef()
     const passwordRef = useRef()
     const [err, seterr] = useState('')
-    const [ok , setok] = useState(true)
+    const [ok, setok] = useState(true)
     const [done, setdone] = useState(false)
 
     async function submit(e) {
         e.preventDefault()
         seterr('')
         setok(true)
-       
+
         try {
             await login(emailRef.current.value, passwordRef.current.value);
             setdone(true)
-            navigate('/home',{replace:true})
+            navigate('/', { replace: true })
         }
         catch (e) {
             setok(false)
-            if(e.message == 'Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).') seterr('Wrong Password')
-            else if(e.message == 'Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') seterr('User not found')
+            if (e.message == 'Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).') seterr('Wrong Password')
+            else if (e.message == 'Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') seterr('User not found')
             else seterr('An Error occured')
         }
 
         emailRef.current.value = ''
         passwordRef.current.value = ''
         setdone(false)
-        
+
     }
 
     return (
@@ -82,9 +82,8 @@ const Login = () => {
                                 </strong>
                             </div>
                             {
-                                !ok ?  <div className='w-100 mx-auto text-center rounded-pill p-2 m-1' style={{"backgroundColor":"#e88296"}}>{err}</div> : <div></div>
+                                !ok ? <div className='w-100 mx-auto text-center rounded-pill p-2 m-1' style={{ "backgroundColor": "#e88296" }}>{err}</div> : <div></div>
                             }
-                           
                             <div className="form-outline mb-4">
                                 <strong>
                                     <label className="form-label" for="emailid">Email address</label>
@@ -98,18 +97,6 @@ const Login = () => {
                                 <input type="password" id="password" className="form-control rounded-pill" ref={passwordRef} />
                             </div>
                             <div className="d-flex justify-content-around align-items-center mb-4" >
-
-                                <div className="form-check">
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="checkbox"
-                                    />
-                                    <strong>
-                                        <label className="form-check-label" for="checkbox"> Remember me </label>
-                                    </strong>
-                                </div>
                                 <Link to="/forgot-password">Forgot password?</Link>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill">Log In</button>
@@ -117,9 +104,7 @@ const Login = () => {
                             <div class="d-flex align-items-center justify-content-center py-4">
                                 <strong><p class="mb-0 me-2">Don't have an account?</p></strong>
                                 <Link type="button" class="btn btn-outline-danger" to="/register">Create new</Link>
-                                
                             </div>
-
                         </form>
                     </div>
                 </div>

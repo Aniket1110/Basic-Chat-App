@@ -16,7 +16,7 @@ const Home = () => {
     const Logout = async () => {
         try {
             await logout()
-            navigate('/', { replace: true })
+            navigate('/login', { replace: true })
         } catch(e) {
             console.log(e.message)
         }
@@ -25,7 +25,7 @@ const Home = () => {
     useEffect(() => {
 
         if(!user) {
-            navigate('/',{replace:true})
+            navigate('/login',{replace:true})
             return;
         }
 
@@ -68,7 +68,7 @@ const Home = () => {
                             <Icon icon="healthicons:ui-user-profile" className='fs-3' />
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item href="home/password-reset">Change Password</Dropdown.Item>
+                            <Dropdown.Item href="/password-reset">Change Password</Dropdown.Item>
                             <Dropdown.Item >
                                 <p onClick={Logout}>Logout</p>
                             </Dropdown.Item>

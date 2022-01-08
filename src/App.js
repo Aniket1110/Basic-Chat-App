@@ -5,19 +5,21 @@ import Home from "./components/Home";
 import ForgotPassword from "./components/ForgotPassword";
 import PasswordReset from "./components/PasswordReset";
 import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+
 
 function App() {
-
   return (
 
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path='/' element={<Login />} />
-          <Route path='/home' element={<PrivateRoute> <Home /> </PrivateRoute>} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/home/password-reset' element={<PrivateRoute><PasswordReset /></PrivateRoute>} />
+
+          <Route path='/' element={<PrivateRoute> <Home /> </PrivateRoute>} />
+          <Route path='/password-reset' element={<PrivateRoute> <PasswordReset /> </PrivateRoute>} />
+          <Route path='/login' element={<PublicRoute> <Login /> </PublicRoute>} />
+          <Route path='/register' element={<PublicRoute> <Register /> </PublicRoute>} />
+          <Route path='/forgot-password' element={<PublicRoute> <ForgotPassword /> </PublicRoute>} />
 
         </Routes>
       </Router>
