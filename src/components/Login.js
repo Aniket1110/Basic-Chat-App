@@ -17,7 +17,7 @@ const Login = () => {
     };
 
     const navigate = useNavigate();
-    const { login } = useAuth()
+    const { login} = useAuth()
     const emailRef = useRef()
     const passwordRef = useRef()
     const [err, seterr] = useState('')
