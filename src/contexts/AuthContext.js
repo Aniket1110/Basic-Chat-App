@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import auth from '../components/Firebase';
 import firebase from "firebase/compat/app"
 
+
 const AuthContext = React.createContext();
 
 export const useAuth = () => {
@@ -16,8 +17,22 @@ const AuthProvider = ({ children }) => {
     const register = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password)
     }
+
     const login = (email, password) => {
         return auth.signInWithEmailAndPassword(email, password)
+    }
+    const loginwithgoogle = async () => {
+        return await auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+            .then((result) => {
+                const details = firebase.auth.getAdditionalUserInfo(result)
+                console.log('I am Aniket Majhi')
+                console.log(result);
+                console.log(details)
+            })
+            .catch((error) => {
+                console.log('Failed login')
+                console.log(error);
+            });
     }
     const logout = () => {
         return auth.signOut()
@@ -61,7 +76,8 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         forgotpassword,
-        resetpassword
+        resetpassword,
+        loginwithgoogle
     }
     return (
         <AuthContext.Provider value={value}>

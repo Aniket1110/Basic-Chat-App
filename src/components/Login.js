@@ -5,6 +5,7 @@ import Mysvg from "../wave.svg"
 import "firebase/compat/app"
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import firebase from 'firebase/compat/app';
 
 const Login = () => {
 
@@ -17,7 +18,7 @@ const Login = () => {
     };
 
     const navigate = useNavigate();
-    const { login } = useAuth()
+    const { login,loginwithgoogle } = useAuth()
     const emailRef = useRef()
     const passwordRef = useRef()
     const [err, seterr] = useState('')
@@ -47,6 +48,18 @@ const Login = () => {
 
     }
 
+    // const loginGoogle = () => {
+
+    //     loginwithgoogle().then((result) => {
+    //         const details = firebase.auth.getAdditionalUserInfo(result)
+    //         console.log(result);
+    //         console.log(details)
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+    // }
+
     return (
         <div className='vh-100'>
             <div className="container py-5">
@@ -68,10 +81,10 @@ const Login = () => {
                         <form onSubmit={submit}>
                             <div className='p-4 fs-4'>
                                 <strong>
-                                    <Icon icon="ant-design:login-outlined" className='mx-2' />Login
+                                    <Icon icon="ant-design:login-outlined" className='mx-2' />Login to Now Chattt
                                 </strong>
                             </div>
-                            <a className="btn btn-outline-dark btn-block  w-100 rounded-pill" href='#' role="button">
+                            <a className="btn btn-outline-dark btn-block  w-100 rounded-pill" role="button" onClick={loginwithgoogle}>
                                 <strong>
                                     <Icon icon="flat-color-icons:google" className="m-1" />Login with Google
                                 </strong>
