@@ -17,7 +17,7 @@ const Login = () => {
     };
 
     const navigate = useNavigate();
-    const { login,loginwithgoogle } = useAuth()
+    const { login, loginwithgoogle } = useAuth()
     const emailRef = useRef()
     const passwordRef = useRef()
     const [err, seterr] = useState('')
@@ -51,24 +51,23 @@ const Login = () => {
         <div className='vh-100'>
             <div className="container py-5">
                 <div className="row h-100">
-                    <div className="col-7">
-                        <div className="logo fs-2 btn">
+                    <div className="col-12 col-lg-7 py-2">
+                        <div className="logo fs-2">
                             <strong>
                                 <Icon icon="akar-icons:chat-add" /> Now Chattt
                             </strong>
                         </div>
-                        <div style={backgroundStyle} className='text-center fs-1 p-5'>
+                        <div style={backgroundStyle} className='text-center fs-3 p-5 heading'>
                             <strong className='mt-3'>
                                 Hello There!!
                             </strong>
                         </div>
                     </div>
-                    <div className="col-1"></div>
-                    <div className="col-4 shadow-lg p-3 mb-5 bg-white round">
+                    <div className="col-12 col-lg-4 shadow-lg mx-auto round login-sizing">
                         <form onSubmit={submit}>
-                            <div className='p-4 fs-4'>
+                            <div className='p-4 fs-3 text-center'>
                                 <strong>
-                                    <Icon icon="ant-design:login-outlined" className='mx-2' />Login to Now Chattt
+                                    Login
                                 </strong>
                             </div>
                             <a className="btn btn-outline-dark btn-block  w-100 rounded-pill" role="button" onClick={loginwithgoogle}>
@@ -82,7 +81,7 @@ const Login = () => {
                                 </strong>
                             </div>
                             {
-                                !ok ? <div className='w-100 mx-auto text-center rounded m-1' style={{ "backgroundColor": "#f0b2b5","padding":"15px" }}><strong>{err}</strong></div> : <div></div>
+                                !ok ? <div className='w-100 mx-auto text-center rounded m-1' style={{ "backgroundColor": "#f0b2b5", "padding": "15px" }}><strong>{err}</strong></div> : <div></div>
                             }
                             <div className="form-outline mb-4">
                                 <strong>

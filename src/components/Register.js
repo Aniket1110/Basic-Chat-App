@@ -46,9 +46,8 @@ const Register = () => {
     return (
         <div className='vh-100'>
             <div className="container py-5">
-                <div className="row h-100">
-                    <div className="col-4"></div>
-                    <div className="col-4 shadow-lg p-3 mb-5 bg-white round">
+                <div className="h-100">
+                    <div className="shadow-lg p-3 mb-5 bg-white round register-sizing mx-auto">
                         <form onSubmit={submit}>
                             <div className='p-4 fs-3 text-center'>
                                 <strong>Register</strong>
@@ -90,7 +89,6 @@ const Register = () => {
                             
                         </form>
                     </div>
-                    <div className="col-4"></div>
                 </div>
             </div>
         </div>

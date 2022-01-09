@@ -67,8 +67,7 @@ const PasswordReset = () => {
 
     return (
         <div className="row">
-            <div className="col-4"></div>
-            <div className="col-4 shadow-lg p-3 mb-5 bg-white round">
+            <div className="shadow-lg p-3 mb-5 round mx-auto register-sizing my-5">
                 <form onSubmit={submit}>
                     <div className='p-4 fs-4 text-center'>
                         <strong>
@@ -97,7 +96,6 @@ const PasswordReset = () => {
                     <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill" disabled={one}>Submit</button>
                 </form>
             </div>
-            <div className="col-4"></div>
         </div>
     )
 }

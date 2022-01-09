@@ -14,3 +14,24 @@ a{
   height: 1px;
   background: #eee;
 }
+ .register-sizing {
+   max-width: 500px;
+ }
+@media only screen and (max-width : 992px) {
+    .heading{
+        display:none;
+    }
+    .logo{
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .login-sizing{
+       max-width: 500px;
+    }
+}
+
+@media only screen and (max-width: 564px) {
+  .home-logo{
+    display: none;
+  }
+}

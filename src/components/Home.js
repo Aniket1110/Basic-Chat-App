@@ -60,13 +60,13 @@ const Home = () => {
     return (
         <div className='app h-100'>
             <div className='row bg-dark p-3 text-light fs-3'>
-                <div className="col-3">
+                <div className="col-3  home-logo">
                     <strong>
                         <Icon icon="akar-icons:chat-add" /> Now Chattt
                     </strong>
                 </div>
                 <div className="col-6 text-center fs-5">{user.email}</div>
-                <div className="col-3 text-end">
+                <div className="col text-end">
                     <Dropdown>
                         <Dropdown.Toggle variant="dark" id="dropdown-basic">
                             <Icon icon="healthicons:ui-user-profile" className='fs-3' />

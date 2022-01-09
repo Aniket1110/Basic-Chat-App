@@ -27,7 +27,6 @@ const Register = () => {
            
         }
         catch (e) {
-        //    console.log(e.message)
            if(e.message == 'Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
                setmsg('user not found')
            }
@@ -40,14 +39,13 @@ const Register = () => {
     return (
         <div className='vh-100'>
             <div className="container py-5">
-                <div className="row h-100">
-                    <div className="col-4"></div>
-                    <div className="col-4 shadow-lg p-3 mb-5 bg-white round">
+                <div className="h-100">
+                    <div className="shadow-lg p-3 mb-5 bg-white round mx-auto register">
                         <form onSubmit={submit}>
                             <div className='fs-3 text-center'>
                                 <strong>Pasword Reset</strong>
                             </div>
-                            <div className='w-100 rounded mt-3' style={ err ? { "backgroundColor": "#f0b2b5", "padding":"15px" } : done ? { "backgroundColor": "#9cf7df","padding":"15px" } : { "backgroundColor": "white" }}>{msg}</div> : <div></div>
+                            <div className='w-100 rounded mt-3 text-center' style={ err ? { "backgroundColor": "#f0b2b5", "padding":"15px" } : done ? { "backgroundColor": "#9cf7df","padding":"15px" } : { "backgroundColor": "white" }}><strong>{msg}</strong></div> : <div></div>
                             <div className="form-outline ">
                                 <strong>
                                     <label className="form-label" for="emailid">Enter Email </label>
@@ -55,10 +53,8 @@ const Register = () => {
                                 <input type="email" id="emailid" className="form-control   rounded-pill" ref={emailRef} />
                             </div>
                             <button type="submit" class="btn btn-primary btn-block w-100 rounded-pill my-4" disabled={one}>Send Mail</button>
-                            <Link to="/login" className='fs-5'><Icon icon="akar-icons:arrow-back" /> Back to Login</Link>
                         </form>
                     </div>
-                    <div className="col-4"></div>
                 </div>
             </div>
         </div>
