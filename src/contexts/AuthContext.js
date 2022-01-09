@@ -31,29 +31,6 @@ const AuthProvider = ({ children }) => {
         return auth.sendPasswordResetEmail(email)
     }
 
-    const reauthenticate = (currentPassword) => {
-        let user = auth.currentUser;
-        let cred = firebase.auth.EmailAuthProvider.credential(
-            user.email, currentPassword);
-        return user.reauthenticateWithCredential(cred);
-    }
-
-    const resetpassword = async(currentPassword, newPassword) => {
-        return reauthenticate(currentPassword).then(() => {
-            return auth.currentUser.updatePassword(newPassword)
-                .then(() => {
-                    console.log("Password updated!");
-                    return true
-                })
-                .catch((error) => {
-                    console.log(error);
-                    return false
-                });
-        }).catch((error) => {
-            console.log(error);
-            return false
-        });
-    }
 
     useEffect(() => {
         const change = auth.onAuthStateChanged(user => {
@@ -69,7 +46,6 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         forgotpassword,
-        resetpassword,
         loginwithgoogle
     }
     return (

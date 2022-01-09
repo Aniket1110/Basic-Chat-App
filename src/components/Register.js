@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { useAuth } from '../contexts/AuthContext'
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
 

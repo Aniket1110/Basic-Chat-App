@@ -18,7 +18,7 @@ const Home = () => {
             await logout()
             navigate('/login', { replace: true })
         } catch (e) {
-            console.log(e.message)
+            alert(e.message)
         }
     }
 
@@ -85,7 +85,6 @@ const Home = () => {
                 userName={user.email}
                 userSecret={user.uid}
             />
-
         </div>
     )
 }
