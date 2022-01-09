@@ -73,9 +73,7 @@ const Home = () => {
                         </Dropdown.Toggle>
                         <Dropdown.Menu variant='dark'>
                             <Dropdown.Item href="/password-reset">Change Password</Dropdown.Item>
-                            <Dropdown.Item >
-                                <p onClick={Logout}>Logout</p>
-                            </Dropdown.Item>
+                            <Dropdown.Item onClick={Logout}>Logout</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
