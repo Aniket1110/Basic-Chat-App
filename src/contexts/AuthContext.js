@@ -38,17 +38,20 @@ const AuthProvider = ({ children }) => {
         return user.reauthenticateWithCredential(cred);
     }
 
-    const resetpassword = (currentPassword, newPassword) => {
+    const resetpassword = async(currentPassword, newPassword) => {
         return reauthenticate(currentPassword).then(() => {
             return auth.currentUser.updatePassword(newPassword)
                 .then(() => {
                     console.log("Password updated!");
+                    return true
                 })
                 .catch((error) => {
                     console.log(error);
+                    return false
                 });
         }).catch((error) => {
             console.log(error);
+            return false
         });
     }
 

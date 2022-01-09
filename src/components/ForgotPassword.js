@@ -47,7 +47,7 @@ const Register = () => {
                             <div className='fs-3 text-center'>
                                 <strong>Pasword Reset</strong>
                             </div>
-                            <div className='w-100 rounded mt-3' style={ err ? { "backgroundColor": "#e88296", "padding":"10px" } : done ? { "backgroundColor": "#9ff4b1","padding":"10px" } : { "backgroundColor": "white" }}>{msg}</div> : <div></div>
+                            <div className='w-100 rounded mt-3' style={ err ? { "backgroundColor": "#f0b2b5", "padding":"15px" } : done ? { "backgroundColor": "#9cf7df","padding":"15px" } : { "backgroundColor": "white" }}>{msg}</div> : <div></div>
                             <div className="form-outline ">
                                 <strong>
                                     <label className="form-label" for="emailid">Enter Email </label>

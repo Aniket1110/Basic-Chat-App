@@ -65,7 +65,7 @@ const Register = () => {
                             </div>
 
                             {
-                                !ok ? <div className='w-100 mx-auto text-center rounded-pill p-2 m-1' style={{ "backgroundColor": "#e88296" }}>{err}</div> : <div></div>
+                                !ok ? <div className='w-100 mx-auto text-center rounded p-2 m-1' style={{ "backgroundColor": "#f0b2b5","padding":"15px" }}>{err}</div> : <div></div>
                             }
 
                             <div className="form-outline mb-4">

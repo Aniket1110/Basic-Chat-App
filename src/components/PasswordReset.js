@@ -1,17 +1,47 @@
 import React, { useState } from 'react'
 import { useRef } from 'react'
-import { useAuth } from '../contexts/AuthContext'
+import auth from '../components/Firebase';
+import firebase from "firebase/compat/app"
 
 const PasswordReset = () => {
 
     const oldpasswordRef = useRef()
     const passwordRef = useRef()
     const confirmpasswordRef = useRef()
-    const { resetpassword } = useAuth()
     const [msg, setmsg] = useState()
     const [err, seterr] = useState(false)
     const [done, setdone] = useState(false)
     const [one, setone] = useState(false)
+
+    const reauthenticate = (currentPassword) => {
+        let user = auth.currentUser;
+        let cred = firebase.auth.EmailAuthProvider.credential(
+            user.email, currentPassword);
+        return user.reauthenticateWithCredential(cred);
+    }
+
+    const resetpassword = async (currentPassword, newPassword) => {
+
+        return reauthenticate(currentPassword).then(() => {
+            return auth.currentUser.updatePassword(newPassword)
+                .then(() => {
+                    setmsg('Password Updated')
+                    setdone(true)
+                })
+                .catch((e) => {
+                    if (e.message == 'Firebase: Password should be at least 6 characters (auth/weak-password).') setmsg('Password should be at least 6 characters')
+                    else setmsg('An error occured')
+                    seterr(true)
+                });
+        }).catch((e) => {
+            if(e.message == 'Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).') {
+                setmsg('Wrong Password!')
+            }
+            else setmsg('An error occured')
+            seterr(true)
+        });
+    }
+
 
     const submit = async (e) => {
         e.preventDefault()
@@ -20,20 +50,20 @@ const PasswordReset = () => {
         seterr(false)
 
         if (passwordRef.current.value !== confirmpasswordRef.current.value) {
+            seterr(true)
             return setmsg('Passwords do not match')
         }
+
         try {
             await resetpassword(oldpasswordRef.current.value, passwordRef.current.value)
-            setmsg('Password changed !')
-            setdone(true)
-            setone(true)
-
-        } catch (e) {
-            console.log(e)
+        }
+        catch {
+            setmsg('An Error occured!')
             seterr(true)
-            setmsg('An error occured')
         }
     }
+
+
 
     return (
         <div className="row">
@@ -45,7 +75,7 @@ const PasswordReset = () => {
                             Password Reset
                         </strong>
                     </div>
-                    <div className='w-100 rounded mt-3' style={err ? { "backgroundColor": "#e88296", "padding": "10px" } : done ? { "backgroundColor": "#9ff4b1", "padding": "10px" } : { "backgroundColor": "white" }}>{msg}</div> : <div></div>
+                    <div className='w-100 rounded mt-3 text-center' style={err ? { "backgroundColor": "#f0b2b5", "padding": "15px" } : done ? { "backgroundColor": "#9cf7df", "padding": "15px" } : { "backgroundColor": "white" }}><strong>{msg}</strong></div> : <div></div>
                     <div className="form-outline mb-4">
                         <strong>
                             <label className="form-label" for="oldpassword">Old Password</label>
